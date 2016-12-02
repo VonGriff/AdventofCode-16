@@ -31,36 +31,45 @@ public class Part02 {
 							}
 						 	break;
 				default:
-							move(Integer.parseInt(input.group()));
-							System.out.println("Longitude: " + lon + "\nLatitude: " + lat);
-							if (grid[lon][lat]) {
+							if (move(Integer.parseInt(input.group()))) {
 								return Math.abs(lat-500) + Math.abs(lon-500);
 							}
-							else {
-								grid[lon][lat] = true;
-							}
+							// System.out.println("Longitude: " + lon + "\nLatitude: " + lat);
+							// if (grid[lon][lat]) {
+							// }
+							// else {
+							// 	grid[lon][lat] = true;
+							// }
 			}
 		}
 		// System.out.println("longitud: " + lon + "\nlatitud: " + lat);
-		return -1;
+		return Math.abs(lat-500) + Math.abs(lon-500);
 	}
 
-	private void move(int steps) {
+	private boolean move(int steps) {
+
 		direction = direction % 360;
 
-		switch (direction) {
-			case 0:
-					lat += steps;
-					break;
-			case 90:
-					lon += steps;
-					break;
-			case 180:
-					lat -= steps;
-					break;
-			case 270:
-					lon -= steps;
-					break;
+		for (int i = 0; i < steps; i++) {
+			grid[lon][lat] = true;
+			switch (direction) {
+				case 0:
+						lat++;
+						break;
+				case 90:
+						lon++;
+						break;
+				case 180:
+						lat--;
+						break;
+				case 270:
+						lon--;
+						break;
+			}
+			if (grid[lon][lat]) {
+				return true;
+			}
 		}
+		return false;
 	}
 }

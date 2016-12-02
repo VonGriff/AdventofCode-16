@@ -14,11 +14,12 @@ public class Main {
 		System.out.println("Result from part 1: " + part01.run());
 
 		input.reset();
-		Part02 part02 = new Part02(input);
+		Part02 part02 = new Part02(input); // 269 too high
 		System.out.println("Result from part 2: " + part02.run());
 	}
 
 	private static Matcher init() throws IOException, java.io.FileNotFoundException {
+
 		BufferedReader in = new BufferedReader(new FileReader("input.txt"));
 		Pattern p = Pattern.compile("[RL]|\\d{3}|\\d{2}|\\d");
 		String line = in.readLine();
