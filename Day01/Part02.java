@@ -34,16 +34,9 @@ public class Part02 {
 							if (move(Integer.parseInt(input.group()))) {
 								return Math.abs(lat-500) + Math.abs(lon-500);
 							}
-							// System.out.println("Longitude: " + lon + "\nLatitude: " + lat);
-							// if (grid[lon][lat]) {
-							// }
-							// else {
-							// 	grid[lon][lat] = true;
-							// }
 			}
 		}
-		// System.out.println("longitud: " + lon + "\nlatitud: " + lat);
-		return Math.abs(lat-500) + Math.abs(lon-500);
+		return -1;
 	}
 
 	private boolean move(int steps) {
