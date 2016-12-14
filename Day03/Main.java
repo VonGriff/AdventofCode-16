@@ -17,6 +17,9 @@ public class Main {
 
 		Part01 part01 = new Part01(input);
 		System.out.println("Result from part 1: " + part01.run());
+
+		Part02 part02 = new Part02(input);
+		System.out.println("Result from part 2: " + part02.run());
 	}
 
 	private static void init(BufferedReader buf) throws IOException {

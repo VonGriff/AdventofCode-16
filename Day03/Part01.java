@@ -13,7 +13,6 @@ public class Part01 {
 	}
 
 	public int run() throws IOException {
-		// String[] num = new String[3];
 		int count = 0;
 
 		for (Integer[] i: input) {
@@ -21,14 +20,6 @@ public class Part01 {
 				count++;
 			}
 		}
-
-		// while ((line = input.readLine()) != null) {
-		// 	System.out.println(line);
-		// 	String[] num = line.split(" ");
-		// 	if (testSides(num)) {
-		// 		count++;
-		// 	}
-		// }
 		return count;
 	}
 
