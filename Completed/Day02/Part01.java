@@ -1,6 +1,8 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
 
+// Part01 goal: With given instructions from input, travel around a keypad and enter the last
+// number of a line as a code entry.
 public class Part01 {
 
 	private final int[][] KEYPAD = new int[][]{{1,4,7},{2,5,8},{3,6,9}};
@@ -10,6 +12,9 @@ public class Part01 {
 
 	public Part01() {}
 
+	// Initiates to read from input and then reads instructions to travel around the keypad
+	// and then enters the last number of a line as anumber for the final code.
+	// Returns a String interpretation of the code.
 	public String run() throws java.io.IOException, java.io.FileNotFoundException {
 		BufferedReader buf = new BufferedReader(new FileReader("input.txt"));
 		int i = 0;
@@ -50,6 +55,8 @@ public class Part01 {
 		return interpret(code);
 	}
 
+	// Adds the numbers from the code to a String
+	// (in a slow fashion, but with so few numbers it doesn't matter)
 	private String interpret(int[] i) {
 		String numbers = "";
 		for (int j: i) {

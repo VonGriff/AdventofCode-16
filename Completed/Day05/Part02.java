@@ -1,5 +1,9 @@
 import java.security.MessageDigest;
 
+// TODO
+
+// Part02 goal: Much like part01, except the 6th charachter in the hex value is the index
+// in the password and the 7th character is the actual value
 public class Part02 {
 	
 	private static MessageDigest md;
@@ -47,7 +51,7 @@ public class Part02 {
 		return truePwd;
 	}
 
-	// Hashes a string and returns the 128-bit hex value (0x00) of that hash
+	// Hashes a string and returns a String of the 128-bit hex value (0x00) of that hash
 	private static String hash(String s) {
 		byte[] b = s.getBytes();
 		b = md.digest(b);
@@ -85,7 +89,7 @@ public class Part02 {
 		return true;
 	}
 
-	// Returns the hex value of a string
+	// Returns the hex value of an int as a String
 	private static String hex(int n) {
     	return Integer.toHexString(n);
 	}

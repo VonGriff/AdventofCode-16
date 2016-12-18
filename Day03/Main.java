@@ -11,9 +11,7 @@ public class Main {
 	private static ArrayList<Integer[]> input = new ArrayList<Integer[]>();
 
 	public static void main(String[] args) throws IOException, java.io.FileNotFoundException {
-
-		BufferedReader buf = new BufferedReader(new FileReader("input.txt"));
-		init(buf);
+		init();
 
 		Part01 part01 = new Part01(input);
 		System.out.println("Result from part 1: " + part01.run());
@@ -22,8 +20,9 @@ public class Main {
 		System.out.println("Result from part 2: " + part02.run());
 	}
 
-	private static void init(BufferedReader buf) throws IOException {
+	private static void init() throws IOException {
 
+		BufferedReader buf = new BufferedReader(new FileReader("input.txt"));
 		Pattern p = Pattern.compile("\\d{3}|\\d{2}|\\d");
 		String line;
 
@@ -32,6 +31,8 @@ public class Main {
 		}
 	}
 
+	// Creates an array with the sides for a triangle and
+	// adds it to input for further use
 	private static void addTri(Matcher m) {
 
 		Integer[] sides = new Integer[3];

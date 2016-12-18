@@ -8,6 +8,7 @@ import java.io.FileNotFoundException;
 
 public class Main {
 
+	// Creates two objects an fetches the result from respective parts
 	public static void main(String[] args) throws IOException, FileNotFoundException {
 
 		Matcher input = init();
@@ -19,7 +20,8 @@ public class Main {
 		System.out.println("Result from part 2: " + part02.run());
 	}
 
-	private static Matcher init() throws IOException, FileNotFoundException {
+	// Takes our input, and returns a Matcher with a certain compiled Pattern
+	private static Matcher init() throws IOException {
 
 		BufferedReader in = new BufferedReader(new FileReader("input.txt"));
 		Pattern p = Pattern.compile("[RL]|\\d{3}|\\d{2}|\\d");

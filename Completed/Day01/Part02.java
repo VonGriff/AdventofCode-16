@@ -1,5 +1,6 @@
 import java.util.regex.Matcher;
 
+// Part02 goal: Find the location where you cross a previously visited taken path
 public class Part02 {
 	
 	private int lat;
@@ -16,6 +17,8 @@ public class Part02 {
 		grid[lon][lat] = true;
 	}
 
+	// Executes part02. Changes direction according to a given instruction.
+	// Returns the result of part02
 	public int run() {
 		while (input.find()) {
 
@@ -39,6 +42,8 @@ public class Part02 {
 		return -1;
 	}
 
+	// Moves in the current available direction in the given amount of steps.
+	// Returns "true" if a location has been visited, "false" otherwise.
 	private boolean move(int steps) {
 
 		direction = direction % 360;
