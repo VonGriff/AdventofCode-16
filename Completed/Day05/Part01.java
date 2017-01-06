@@ -1,6 +1,7 @@
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.lang.Math;
+import java.lang.StringBuilder;
 
 // TODO
 
@@ -24,15 +25,12 @@ public class Part01 {
 		int index = 0;
 		int pwdIndex = 0;
 
-		while (index < Integer.MAX_VALUE) {
+		while (pwd.length() < 8) {
 			String hash = hash(input + index);
-			if (validHash(hash)) {
+			if (hash.startsWith("00000")) {
 				// pwd[pwdIndex] = hash.charAt(5);
-				pwd = pwd + hash.charAt(5);
+				pwd += hash.charAt(5);
 				pwdIndex++;
-			}
-			if (pwd.length() == 8) {
-				break;
 			}
 			// if (index % 1000000 == 0) {
 			// 	System.out.println("MILJON!");
@@ -47,35 +45,37 @@ public class Part01 {
 	private static String hash(String s) {
 		byte[] b = s.getBytes();
 		b = md.digest(b);
-		String t = "";
+		// String t = "";
+		StringBuilder sb = new StringBuilder();
 
 		for (Byte by: b) {
 			// System.out.println(by);
 			if (by < 0) {
-				t = t + hex(0xff + by + 1);
+				sb.append(hex(0xff + by + 1));
 			}
-			else if (by < 16) {
-				t = t + "0" + hex(by);
+			else if (by < 16) { // Adds a zero due to 0x0 representation rather than 0x00
+				sb.append("0" + hex(by));
 			}
 			else {
-				t = t + hex(by);
+				sb.append(hex(by));
 			}
 		}
-		// md5.reset();
-		return t;
+		md.reset();
+		return sb.toString();
 	}
 
 	// Checks if a hexidecimal value has 5 leading zeroes
-	private boolean validHash(String hash) {
-		for (int i = 0; i < 5; i++) {
-			if (hash.charAt(i) != '0') {
-				return false;
-			}
-		}
-		// System.out.println("Valid!");
-		// System.out.println(hash);
-		return true;
-	}
+	// private boolean validHash(String hash) {
+	// 	// for (int i = 0; i < 5; i++) {
+	// 	// 	if (hash.charAt(i) != '0') {
+	// 	// 		return false;
+	// 	// 	}
+	// 	// }
+	// 	return hash.startsWith("00000");
+	// 	// System.out.println("Valid!");
+	// 	// System.out.println(hash);
+	// 	// return true;
+	// }
 
 	// Returns an int as a String of it's hexadecimal form
 	private static String hex(int n) {

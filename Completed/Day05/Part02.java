@@ -1,4 +1,5 @@
 import java.security.MessageDigest;
+import java.lang.StringBuilder;
 
 // TODO
 
@@ -22,7 +23,7 @@ public class Part02 {
 		int pwdIndex = 0;
 		String hash;
 
-		while (index < Integer.MAX_VALUE) {
+		while (pwdIndex < 8) {
 			hash = hash(input + index);
 			if (validHash(hash)) {
 				// pwd[pwdIndex] = hash.charAt(5);
@@ -32,15 +33,9 @@ public class Part02 {
 					pwd[tempIndex] = tempHash[6];
 					pwdIndex++;
 				}
-				else {
-					System.out.println("DOUBLE!");
-				}
-			}
-			if (pwdIndex == 8) {
-				break;
-			}
-			if (index % 1000000 == 0) {
-				System.out.println("MILJON!");
+				// else {
+				// 	System.out.println("DOUBLE!");
+				// }
 			}
 			index++;
 		}
@@ -55,22 +50,22 @@ public class Part02 {
 	private static String hash(String s) {
 		byte[] b = s.getBytes();
 		b = md.digest(b);
-		String t = "";
+		StringBuilder sb = new StringBuilder();
 
 		for (Byte by: b) {
 			// System.out.println(by);
 			if (by < 0) {
-				t = t + hex(0xff + by + 1);
+				sb.append(hex(0xff + by + 1));
 			}
 			else if (by < 16) {
-				t = t + "0" + hex(by);
+				sb.append("0" + hex(by));
 			}
 			else {
-				t = t + hex(by);
+				sb.append(hex(by));
 			}
 		}
-		// md5.reset();
-		return t;
+		md.reset();
+		return sb.toString();
 	}
 
 	// Finds if the hex of the hash meets the requirements
@@ -78,15 +73,16 @@ public class Part02 {
 		if (hash.charAt(5) > '7') {
 			return false;
 		}
-		for (int i = 0; i < 5; i++) {
-			if (hash.charAt(i) != '0') {
-				return false;
-			}
-		}
-		System.out.println(hash);
-		System.out.println(hash.charAt(5) + "\n" + hash.charAt(6));
-		System.out.println("Valid!");
-		return true;
+		// for (int i = 0; i < 5; i++) {
+		// 	if (hash.charAt(i) != '0') {
+		// 		return false;
+		// 	}
+		// }
+		return hash.startsWith("00000");
+		// System.out.println(hash);
+		// System.out.println(hash.charAt(5) + "\n" + hash.charAt(6));
+		// System.out.println("Valid!");
+		// return true;
 	}
 
 	// Returns the hex value of an int as a String
