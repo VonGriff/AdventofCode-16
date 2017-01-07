@@ -16,14 +16,14 @@ public class Part01 {
 		int count = 0;
 
 		for (Integer[] i: input) {
-			if (testSides(i)) {
+			if (isValidTriangle(i)) {
 				count++;
 			}
 		}
 		return count;
 	}
 
-	private boolean testSides(Integer[] num) {
+	private boolean isValidTriangle(Integer[] num) {
 
 		if (num[0] + num[1] <= num[2]) {
 			return false;

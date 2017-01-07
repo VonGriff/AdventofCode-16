@@ -17,7 +17,7 @@ public class Main {
 		System.out.println("Result from part 1: " + part01.run());
 
 		Part02 part02 = new Part02(input);
-		System.out.println("Result from part 2: " + part02.run());
+		System.out.println("Result from part 2: " + part02.run()); // 1574 is too low
 	}
 
 	private static void init() throws IOException {
