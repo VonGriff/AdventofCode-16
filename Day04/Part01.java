@@ -1,30 +1,54 @@
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.Scanner;
 import java.util.ArrayList;
-import java.util.LinkedList;
-
-import java.lang.StringBuilder;
-
-import java.io.BufferedReader;
-import java.io.FileReader;
 
 public class Part01 {
 
-	private static ArrayList<LinkedList<String>> input;
+	private Scanner input;
 
-	public Part01(ArrayList<LinkedList<String>> input) {
+	public Part01(Scanner input) {
 		this.input = input;
 	}
 
 	public int run() {
-		String checksum;
+		int sum = 0;
 		String encryption;
-		int sectorID;
-		StringBuilder encryptionName;
-		for (LinkedList<String> line: input) {
-			encryptionName = new StringBuilder();
-		}
+		String sectorID;
+		String checkSum;
 
-		return -1;
+		while (input.hasNextLine()) {
+			encryption = input.findInLine("([a-z]+-)+[a-z]+");
+			sectorID = input.findInLine("\\d+");
+			checkSum = input.findInLine("\\[\\w+\\]");
+
+			// System.out.println("encryption: " + encryption + "\nsectorID: " + sectorID + "\nChecksum: " + checkSum);
+			if (isValidChecksum(checkSum))
+				sum += Integer.parseInt(sectorID);
+			if (input.hasNextLine())
+				input.nextLine();
+		}
+		return sum;
+	}
+
+	// Finds and returns the 5 most common characters from the string
+	private char[] getMostCommon(String encryption) {
+		ArrayList<Character> letters = new ArrayList<Character>();
+		char[] common = new char[5];
+
+		for (int i=0; i<encryption.length(); i++) {
+			c = encryption.charAt(i);
+
+			if (!letters.contain(c) && c != '-')
+				letters.add(c);
+		}
+		return common;
+	}
+
+	private boolean isValidChecksum(String checkSum) {
+		char[] c = checkSum.toCharArray();
+		for (int i = 1; i < c.length-1; i++) {
+			// if(c[i] > c[i+1])
+			// 	return false;
+		}
+		return true;
 	}
 }

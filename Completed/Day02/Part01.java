@@ -21,28 +21,24 @@ public class Part01 {
 		int j = 0;
 		while ((j = buf.read()) != -1) {
 			switch (j) {
-				case 'U':	if (posY == 0) {
-								break;					
+				case 'U':	if (!(posY == 0)) {
+								posY--;				
 							}
-							posY--;
 							break;
 
-				case 'D':	if (posY == 2) {
-								break;
+				case 'D':	if (!(posY == 2)) {
+								posY++;
 							}
-							posY++;
 							break;
 
-				case 'L':	if (posX == 0) {
-								break;
+				case 'L':	if (!(posX == 0)) {
+								posX--;
 							}
-							posX--;
 							break;
 
-				case 'R':	if (posX == 2) {
-								break;
+				case 'R':	if (!(posX == 2)) {
+								posX++;
 							}
-							posX++;
 							break;
 
 				default:	//System.out.println("Number: " + KEYPAD[posX][posY]);
